@@ -35,5 +35,6 @@
   },
   "devDependencies": {
     "react-ace": "^9.0.0"
-  }
+  },
+  "homepage": "thetimmorland.github.io/micro-lang"
 }
