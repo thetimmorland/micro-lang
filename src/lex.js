@@ -1,0 +1,57 @@
+import tokens from "./tokens";
+
+const tokenLookup = {
+  "\0": tokens.EOF,
+  "\n": tokens.NEWLINE,
+  "=": tokens.EQ,
+  "+": tokens.PLUS,
+  "-": tokens.MINUS,
+  "*": tokens.ASTERISK,
+  "/": tokens.SLASH,
+  GOTO: tokens.GOTO,
+  PRINT: tokens.PRINT,
+  INPUT: tokens.INPUT,
+  LET: tokens.LET,
+  IF: tokens.IF,
+  THEN: tokens.THEN,
+  ENDIF: tokens.ENDIF,
+  WHILE: tokens.WHILE,
+  REPEAT: tokens.REPEAT,
+  ENDWHILE: tokens.ENDWHILE,
+  "==": tokens.EQEQ,
+  "!=": tokens.NOTEQ,
+  "<": tokens.LT,
+  "<=": tokens.LTEQ,
+  ">": tokens.GT,
+  ">=": tokens.GTEQ,
+};
+
+export function stripComments(string) {
+  return string.replace(/#.*/g, "");
+}
+
+export function splitTokens(string) {
+  return string.split(/\s+(?=(?:[^"]*"[^"]*")*[^"]*$)/);
+}
+
+export function getToken(string) {
+  var token = tokenLookup[string];
+
+  if (token === undefined) {
+    if (string.match(/^\d+(\.\d+)?$/)) {
+      return tokens.NUMBER;
+    } else if (string.match(/^[A-z]\w*$/)) {
+      return tokens.IDENT;
+    } else if (string.match(/^".*"$/)) {
+      return tokens.STRING;
+    }
+  }
+
+  return token;
+}
+
+export function lex(code) {
+  const noComments = stripComments(code);
+  const tokenStrings = splitTokens(noComments);
+  return tokenStrings.map((string) => [getToken(string), string]);
+}
