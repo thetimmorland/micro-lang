@@ -14,6 +14,9 @@ test("whitespace is split correctly", () => {
 test("getToken", () => {
   expect(lex.getToken("42")).toBe(tokens.NUMBER);
   expect(lex.getToken("3.1415")).toBe(tokens.NUMBER);
+  expect(() => {
+    lex.getToken("24.");
+  }).toThrow();
   expect(lex.getToken("foo")).toBe(tokens.IDENT);
   expect(lex.getToken("bar123")).toBe(tokens.IDENT);
   expect(lex.getToken('"bar"')).toBe(tokens.STRING);

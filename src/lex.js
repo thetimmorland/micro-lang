@@ -35,19 +35,21 @@ export function splitTokens(string) {
 }
 
 export function getToken(string) {
-  var token = tokenLookup[string];
+  var lookup = tokenLookup[string];
 
-  if (token === undefined) {
+  if (lookup === undefined) {
     if (string.match(/^\d+(\.\d+)?$/)) {
       return tokens.NUMBER;
     } else if (string.match(/^[A-z]\w*$/)) {
       return tokens.IDENT;
     } else if (string.match(/^".*"$/)) {
       return tokens.STRING;
+    } else {
+      throw "Unknown token: " + string;
     }
+  } else {
+    return lookup;
   }
-
-  return token;
 }
 
 export function lex(code) {
