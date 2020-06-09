@@ -8,6 +8,7 @@ import {
   Link,
   IconButton,
   Fab,
+  Button,
   Grid,
   Paper,
 } from "@material-ui/core";
@@ -77,7 +78,9 @@ function App() {
   return (
     <div className={classes.root}>
       <TopBar>
-        <Typography variant="h6">µLang</Typography>
+        <Button color="inherit" variant="outlined" startIcon={<PlayArrow />}>
+          Run
+        </Button>
         <Link
           color="inherit"
           href="https://github.com/thetimmorland/micro-lang/"
@@ -106,9 +109,6 @@ function App() {
           </Paper>
         </Grid>
       </Grid>
-      <Fab color="secondary" onClick={compile} className={classes.fab}>
-        <PlayArrow />
-      </Fab>
     </div>
   );
 }
