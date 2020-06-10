@@ -36,10 +36,5 @@
   "devDependencies": {
     "react-ace": "^9.0.0"
   },
-  "jest": {
-    "moduleNameMapper": {
-      "ace-builds": "<rootDir>/node_modules/ace-builds"
-    }
-  },
   "homepage": "https://thetimmorland.github.io/micro-lang/"
 }
