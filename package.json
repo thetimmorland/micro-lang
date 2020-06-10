@@ -41,5 +41,5 @@
       "ace-builds": "<rootDir>/node_modules/ace-builds"
     }
   },
-  "homepage": "thetimmorland.github.io/micro-lang"
+  "homepage": "https://thetimmorland.github.io/micro-lang/"
 }
