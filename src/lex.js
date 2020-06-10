@@ -1,4 +1,5 @@
 import tokens from "./tokens";
+import flatMap from "./flatMap";
 
 const tokenLookup = {
   "\0": tokens.EOF,
@@ -31,7 +32,12 @@ export function stripComments(string) {
 }
 
 export function splitTokens(string) {
-  return string.split(/\s+(?=(?:[^"]*"[^"]*")*[^"]*$)/);
+  string = flatMap(string.split(/(\n)/), (str) =>
+    // matches tabs and spaces which are not quoted
+    str.split(/[ \t]+(?=(?:[^"]*"[^"]*")*[^"]*$)/)
+  );
+
+  return string.filter((elem) => elem != "");
 }
 
 export function getToken(string) {

@@ -7,8 +7,9 @@ test("stripComments", () => {
 });
 
 test("whitespace is split correctly", () => {
-  expect(lex.splitTokens("a b c")).toStrictEqual(["a", "b", "c"]);
+  expect(lex.splitTokens("a b c \n")).toStrictEqual(["a", "b", "c", "\n"]);
   expect(lex.splitTokens('a "b c"')).toStrictEqual(["a", '"b c"']);
+  expect(lex.splitTokens("\n\n\0")).toStrictEqual(["\n", "\n", "\0"]);
 });
 
 test("getToken", () => {
@@ -23,9 +24,10 @@ test("getToken", () => {
 });
 
 test("lex", () => {
-  expect(lex.lex("foo * 2")).toStrictEqual([
+  expect(lex.lex("foo * 2\n")).toStrictEqual([
     [tokens.IDENT, "foo"],
     [tokens.ASTERISK, "*"],
     [tokens.NUMBER, "2"],
+    [tokens.NEWLINE, "\n"],
   ]);
 });

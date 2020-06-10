@@ -1,17 +1,10 @@
 import React from "react";
 
 import AceEditor from "react-ace";
+import "ace-builds/src-noconflict/ace";
 import "ace-builds/webpack-resolver";
 
-import {
-  Typography,
-  Link,
-  IconButton,
-  Fab,
-  Button,
-  Grid,
-  Paper,
-} from "@material-ui/core";
+import { Link, IconButton, Button, Grid, Paper } from "@material-ui/core";
 import { GitHub, PlayArrow } from "@material-ui/icons";
 
 import TopBar from "./TopBar";
@@ -78,7 +71,12 @@ function App() {
   return (
     <div className={classes.root}>
       <TopBar>
-        <Button color="inherit" variant="outlined" startIcon={<PlayArrow />}>
+        <Button
+          onClick={compile}
+          color="inherit"
+          variant="outlined"
+          startIcon={<PlayArrow />}
+        >
           Run
         </Button>
         <Link
