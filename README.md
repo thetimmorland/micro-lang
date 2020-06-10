@@ -1,8 +1,10 @@
-# Grammar
+# BNF
 
-program ::= {statement}
+[https://en.wikipedia.org/wiki/Extended_Backus%E2%80%93Naur_form]
 
-statement ::=\
+program = {statement}
+
+statement =\
  | "PRINT" (expression | string) nl\
  | "LET" ident "=" expression nl\
  | "IF" comparison "THEN" nl {statement} "ENDWHILE" nl\
@@ -10,22 +12,14 @@ statement ::=\
  | "GOTO" ident nl\
  | "INPUT" ident nl
 
-comparison ::= expression (("==" | "!=" | ">" | ">=" | "<" | "<=") expression)+
+comparison = expression {("==" | "!=" | ">" | ">=" | "<" | "<=") expression}
 
-expression ::= term {( "-" | "+" ) term}
+expression = term {( "-" | "+" ) term}
 
-term ::= unary {( "/" | "\*" ) unary}
+term = unary {( "/" | "\*" ) unary}
 
-unary ::= ["+" | "-"] primary
+unary = ["+" | "-"] primary
 
-primary ::= number | ident
+primary = number | ident
 
-nl ::= '\n'+
-
-## Legend
-
-(): Grouping\
-{}: Zero or more\
-[]: Zero or one\
-\+: One or more of left\
-|: logical or
+nl ::= {'\n'}
