@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.js": "/micro-lang/static/js/main.00936b59.chunk.js",
-    "main.js.map": "/micro-lang/static/js/main.00936b59.chunk.js.map",
+    "main.js": "/micro-lang/static/js/main.8031cfe7.chunk.js",
+    "main.js.map": "/micro-lang/static/js/main.8031cfe7.chunk.js.map",
     "runtime-main.js": "/micro-lang/static/js/runtime-main.dd6605e5.js",
     "runtime-main.js.map": "/micro-lang/static/js/runtime-main.dd6605e5.js.map",
     "static/js/2.5e1dbded.chunk.js": "/micro-lang/static/js/2.5e1dbded.chunk.js",
@@ -421,13 +421,13 @@
     "mode-groovy.js": "/micro-lang/fe6efc8bf7b948aa275d980518b286b7.js",
     "theme-gruvbox.js": "/micro-lang/feff703ce532f20391dfed8199b6971e.js",
     "index.html": "/micro-lang/index.html",
-    "precache-manifest.afc192a3e25c1aaab292df11e9aedea5.js": "/micro-lang/precache-manifest.afc192a3e25c1aaab292df11e9aedea5.js",
+    "precache-manifest.50530d609fecdcaa7259b3abbcfc676d.js": "/micro-lang/precache-manifest.50530d609fecdcaa7259b3abbcfc676d.js",
     "service-worker.js": "/micro-lang/service-worker.js",
     "static/js/2.5e1dbded.chunk.js.LICENSE.txt": "/micro-lang/static/js/2.5e1dbded.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.dd6605e5.js",
     "static/js/2.5e1dbded.chunk.js",
-    "static/js/main.00936b59.chunk.js"
+    "static/js/main.8031cfe7.chunk.js"
   ]
 }
