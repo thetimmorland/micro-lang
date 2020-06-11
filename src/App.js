@@ -9,6 +9,7 @@ import { GitHub, PlayArrow } from "@material-ui/icons";
 
 import TopBar from "./TopBar";
 import Compiler from "./Compiler";
+import codeTemplate from "./codeTemplate";
 
 import { makeStyles } from "@material-ui/core/styles";
 
@@ -42,20 +43,6 @@ const useStyles = makeStyles((theme) => ({
     right: theme.spacing(2),
   },
 }));
-
-const codeTemplate = `PRINT "How many fibonacci numbers do you want?"
-INPUT nums
-PRINT ""
-
-LET a = 0
-LET b = 1
-WHILE nums > 0 REPEAT
-    PRINT a
-    LET c = a + b
-    LET a = b
-    LET b = c
-    LET nums = nums - 1
-ENDWHILE`;
 
 function App() {
   const classes = useStyles();

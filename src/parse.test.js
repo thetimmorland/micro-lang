@@ -1,2 +1,62 @@
-import * as parse from "./parse";
+import {
+  fail,
+  succeed,
+  satisfy,
+  literal,
+  alt,
+  then,
+  using,
+  many,
+  some,
+  parse,
+} from "./parse";
+
 import tokens from "./tokens";
+
+test("literal", () => {
+  const parser = literal(3);
+  expect(parser([3, 4, 5])).toStrictEqual(succeed(3, [4, 5]));
+});
+
+test("alt", () => {
+  const parser = alt(literal(2), literal(1));
+  expect(parser([1, 2, 3])).toStrictEqual(succeed(1, [2, 3]));
+  expect(parser([2, 1, 3])).toStrictEqual([[2, [1, 3]]]);
+});
+
+test("then", () => {
+  const parser = then(literal(1), literal(2));
+  expect(parser([1, 2, 3, 4])).toStrictEqual(succeed([1, 2], [3, 4]));
+});
+
+test("using", () => {
+  const parser = using(literal(1), (x) => x.toString());
+  expect(parser([1, 2, 3])).toStrictEqual(succeed("1", [2, 3]));
+});
+
+test("many", () => {
+  const parser = many(literal(1));
+  expect(parser([1, 2])).toStrictEqual(
+    succeed([1], [2]).concat(succeed([], [1, 2]))
+  );
+  expect(parser([1, 1, 2])).toStrictEqual(
+    succeed([1, 1], [2])
+      .concat(succeed([1], [1, 2]))
+      .concat(succeed([], [1, 1, 2]))
+  );
+  expect(parser([2, 1])).toStrictEqual(succeed([], [2, 1]));
+});
+
+test("some", () => {
+  const parser = some(literal(1));
+
+  expect(parser([2, 1])).toStrictEqual(fail());
+
+  expect(parser([1, 1])).toStrictEqual(
+    succeed([1, 1], []).concat(succeed([1], [1]))
+  );
+});
+
+test("parser", () => {
+  expect(parse("(1+2)")).toBe();
+});
