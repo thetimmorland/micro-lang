@@ -1242,7 +1242,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/micro-lang/feff703ce532f20391dfed8199b6971e.js"
   },
   {
-    "revision": "706c2115249ddee48b9192ee19f4d205",
+    "revision": "92426372777acf4205337c8bcd8985ab",
     "url": "/micro-lang/index.html"
   },
   {
@@ -1254,8 +1254,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/micro-lang/static/js/2.5e1dbded.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "7ea1feaca4aa5ed5ca96",
-    "url": "/micro-lang/static/js/main.8031cfe7.chunk.js"
+    "revision": "9d8cd0bd727e6560255b",
+    "url": "/micro-lang/static/js/main.ee731bdf.chunk.js"
   },
   {
     "revision": "8abc73b696c7cfe6ea00",
