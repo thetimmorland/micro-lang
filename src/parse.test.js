@@ -53,8 +53,19 @@ test("xthenx", () => {
 });
 
 test("parse", () => {
-  const out = parse("(defun plus (a b) (+ a b))");
+  const out = parse(codeTemplate);
   expect(out).toStrictEqual(
-    succeed([["defun", "plus", ["a", "b"], ["+", "a", "b"]]], [])
+    succeed(
+      [
+        [
+          "defun",
+          "factorial",
+          ["n"],
+          ["if", ["=", "n", 0], 1, ["*", "n", ["factorial", ["-", "n", 1]]]],
+        ],
+        ["print", ["factorial", 5]],
+      ],
+      []
+    )
   );
 });
