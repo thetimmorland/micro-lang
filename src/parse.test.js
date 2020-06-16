@@ -20,7 +20,7 @@ test("literal", () => {
 test("alt", () => {
   const parser = alt(literal(2), literal(1));
   expect(parser([1, 2, 3])).toStrictEqual(succeed(1, [2, 3]));
-  expect(parser([2, 1, 3])).toStrictEqual([[2, [1, 3]]]);
+  expect(parser([2, 1, 3])).toStrictEqual(succeed(2, [1, 3]));
 });
 
 test("then", () => {
@@ -44,7 +44,6 @@ test("some", () => {
   const parser = some(literal(1));
 
   expect(parser([2, 1])).toStrictEqual(fail());
-
   expect(parser([1, 1])).toStrictEqual(succeed([1, 1], []));
 });
 

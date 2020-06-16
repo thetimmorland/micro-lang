@@ -30,7 +30,7 @@ export const variadic = (p) =>
   };
 
 // construct a parser which applies p1 or p2 (inclusive)
-export const alt = (p1, p2) => (inp) => [...p1(inp), ...p2(inp)];
+export const alt = (p1, p2) => (inp) => (p1(inp).length ? p1(inp) : p2(inp));
 export const valt = variadic(alt);
 
 // construct a parser which applies p1, then applies p2 to p1s unconsumed output
@@ -45,12 +45,12 @@ export const using = (p, f) => (inp) => p(inp).map(([v, out]) => [f(v), out]);
 
 // construct a parser which matches p zero or more times
 export const many = (p) => (inp) =>
-  p(inp).length === 0
-    ? succeed([], inp)
-    : using(
+  p(inp).length // zero length implies failure
+    ? using(
         then(p, (inp) => many(p)(inp)),
         ([a, b]) => [a, ...b]
-      )(inp);
+      )(inp)
+    : succeed([], inp);
 
 // construct a parser which matches p one or more times
 export const some = (p) => using(then(p, many(p)), ([a, b]) => [a, ...b]);
