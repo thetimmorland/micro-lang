@@ -1,17 +1,16 @@
-import {
+import parse, {
   fail,
   succeed,
-  satisfy,
   literal,
   alt,
   then,
   using,
   many,
   some,
-  parse,
+  xthenx,
 } from "./parse";
 
-import tokens from "./tokens";
+import codeTemplate from "./codeTemplate";
 
 test("literal", () => {
   const parser = literal(3);
@@ -36,14 +35,8 @@ test("using", () => {
 
 test("many", () => {
   const parser = many(literal(1));
-  expect(parser([1, 2])).toStrictEqual(
-    succeed([1], [2]).concat(succeed([], [1, 2]))
-  );
-  expect(parser([1, 1, 2])).toStrictEqual(
-    succeed([1, 1], [2])
-      .concat(succeed([1], [1, 2]))
-      .concat(succeed([], [1, 1, 2]))
-  );
+  expect(parser([1, 2])).toStrictEqual(succeed([1], [2]));
+  expect(parser([1, 1, 2])).toStrictEqual(succeed([1, 1], [2]));
   expect(parser([2, 1])).toStrictEqual(succeed([], [2, 1]));
 });
 
@@ -52,11 +45,17 @@ test("some", () => {
 
   expect(parser([2, 1])).toStrictEqual(fail());
 
-  expect(parser([1, 1])).toStrictEqual(
-    succeed([1, 1], []).concat(succeed([1], [1]))
-  );
+  expect(parser([1, 1])).toStrictEqual(succeed([1, 1], []));
 });
 
-test("parser", () => {
-  expect(parse("(1+2)")).toBe();
+test("xthenx", () => {
+  const parser = xthenx(literal(1), literal(2), literal(3));
+  expect(parser([1, 2, 3])).toStrictEqual(succeed(2, []));
+});
+
+test("parse", () => {
+  const out = parse("(defun plus (a b) (+ a b))");
+  expect(out).toStrictEqual(
+    succeed([["defun", "plus", ["a", "b"], ["+", "a", "b"]]], [])
+  );
 });
